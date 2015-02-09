@@ -1,0 +1,93 @@
+2015-02-08 15:00:12 Error: [MissingControllerException] Controller class CakeController could not be found.
+Exception Attributes: array (
+  'class' => 'CakeController',
+  'plugin' => NULL,
+)
+Request URL: /cake
+Stack Trace:
+#0 /home/game/cakephp/app/webroot/index.php(108): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2015-02-08 15:09:52 Error: [MissingControllerException] Controller class CakeController could not be found.
+Exception Attributes: array (
+  'class' => 'CakeController',
+  'plugin' => NULL,
+)
+Request URL: /cake
+Stack Trace:
+#0 /home/game/cakephp/app/webroot/index.php(108): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2015-02-08 15:15:40 Error: [MissingControllerException] Controller class CakeController could not be found.
+Exception Attributes: array (
+  'class' => 'CakeController',
+  'plugin' => NULL,
+)
+Request URL: /cake
+Stack Trace:
+#0 /home/game/cakephp/app/webroot/index.php(108): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2015-02-08 15:15:42 Error: [MissingControllerException] Controller class CakeController could not be found.
+Exception Attributes: array (
+  'class' => 'CakeController',
+  'plugin' => NULL,
+)
+Request URL: /cake
+Stack Trace:
+#0 /home/game/cakephp/app/webroot/index.php(108): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2015-02-08 15:17:54 Error: [MissingControllerException] Controller class CakeController could not be found.
+Exception Attributes: array (
+  'class' => 'CakeController',
+  'plugin' => NULL,
+)
+Request URL: /cake
+Stack Trace:
+#0 /home/game/cakephp/app/webroot/index.php(108): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2015-02-08 15:22:10 Error: [MissingActionException] Action CakeController::index() could not be found.
+Exception Attributes: array (
+  'controller' => 'CakeController',
+  'action' => 'index',
+)
+Request URL: /cake
+Stack Trace:
+#0 /home/game/cakephp/lib/Cake/Routing/Dispatcher.php(193): Controller->invokeAction(Object(CakeRequest))
+#1 /home/game/cakephp/lib/Cake/Routing/Dispatcher.php(167): Dispatcher->_invoke(Object(CakeController), Object(CakeRequest))
+#2 /home/game/cakephp/app/webroot/index.php(108): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#3 {main}
+2015-02-08 15:30:25 Error: [MissingControllerException] Controller class CakephpController could not be found.
+Exception Attributes: array (
+  'class' => 'CakephpController',
+  'plugin' => NULL,
+)
+Request URL: /cakephp/cakephp
+Stack Trace:
+#0 /home/game/cakephp/app/webroot/index.php(108): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2015-02-08 15:30:30 Error: [MissingControllerException] Controller class CakephpController could not be found.
+Exception Attributes: array (
+  'class' => 'CakephpController',
+  'plugin' => NULL,
+)
+Request URL: /cakephp/Cake
+Stack Trace:
+#0 /home/game/cakephp/app/webroot/index.php(108): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2015-02-08 15:32:05 Error: Fatal Error (64): Cannot redeclare CakeController::index() in [/home/game/cakephp/app/Controller/CakeController.php, line 14]
+2015-02-08 15:32:05 Error: [FatalErrorException] Cannot redeclare CakeController::index()
+Request URL: /Cake/index
+Stack Trace:
+#0 /home/game/cakephp/lib/Cake/Error/ErrorHandler.php(203): ErrorHandler::handleFatalError(64, 'Cannot redeclar...', '/home/game/cake...', 14)
+#1 [internal function]: ErrorHandler::handleError(64, 'Cannot redeclar...', '/home/game/cake...', 14, Array)
+#2 /home/game/cakephp/lib/Cake/Core/App.php(931): call_user_func('ErrorHandler::h...', 64, 'Cannot redeclar...', '/home/game/cake...', 14, Array)
+#3 /home/game/cakephp/lib/Cake/Core/App.php(904): App::_checkFatalError()
+#4 [internal function]: App::shutdown()
+#5 {main}
+2015-02-08 22:40:34 Error: [MissingControllerException] Controller class VtigercrmController could not be found.
+Exception Attributes: array (
+  'class' => 'VtigercrmController',
+  'plugin' => NULL,
+)
+Request URL: /vtigercrm/test/upload/vtigercrm.txt
+Stack Trace:
+#0 /home/game/cakephp/app/webroot/index.php(108): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
