@@ -4,13 +4,12 @@ useage: mysql -u root < schema.sql
 
 drop   database if exists cake_db;
 create database           cake_db default character set utf8;
-grant all on cake_db.* to 'game'@'localhost' identified by 'Drag1100';
 use                       cake_db;
 
 
 
-drop table if exists user_data;
-create table user_data (
+drop table if exists user_datas;
+create table user_datas (
   id                 int               unsigned not null,
   facebook_id        int               unsigned not null,
   name               varchar(255)               not null,
@@ -20,7 +19,7 @@ create table user_data (
 ) character set 'utf8',
 type=InnoDB;
 
-alter table favorite
+alter table user_datas
  add primary key     (id),
  add unique  index(facebook_id);
 
