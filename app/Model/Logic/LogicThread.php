@@ -73,6 +73,34 @@ class LogicThread extends Model {
         );
     }
 
+    # スレッドを作成
+    public function create_thread( $controller, $title, $user_id ) {
+        $record = $controller->ThreadData->save(array(
+            'title'          => $title,
+            'create_user_id' => $user_id,
+            'created_at'     => time(),
+            'updated_at'     => time(),
+        ));
+        return $record['ThreadData']['id'];
+    }
+
+    # レスを作成
+    # ToDO:rollback調査
+    public function create_response( $controller, $thread_id, $user_id, $comment ) {
+        $controller->ThreadComment->save(array(
+            'thread_id'  => $thread_id,
+            'user_id'    => $user_id,
+            'comment'    => $comment,
+            'image'      => null,
+            'created_at' => time(),
+            'updated_at' => time(),
+        ));
+        # スレの最終更新日時をupdate
+        $controller->ThreadData->set(array(
+            'updated_at' => time(),
+        ));
+        return 1;
+    }
 
 
     #<-----------  private method -------------->

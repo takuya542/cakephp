@@ -6,8 +6,12 @@ class CreateController extends AppController {
     public $autoLayout = true;
 
     #Modelのロード
-    public $uses = array('UserData', 'ThreadData', 'ThreadComment');
-
+    public $uses = array('UserData', 'ThreadData', 'ThreadComment', 'LogicThread');
+#    public $components = array(
+#        'Security' => array(
+#            'csrfExpires' => '+1 hour'
+#        )
+#    );
 
     # セッションのチェック & ユーザオブジェクト生成 & 未ログインならリダイレクト & postリクエストかチェック
     public function beforeFilter() {
@@ -16,6 +20,8 @@ class CreateController extends AppController {
         if ( $this->request->is('get') ) {
             $this->redirect('/');
         }
+
+        #$this->Security->requireAuth("exec");
     }
 
     # スレ立て確認
@@ -29,10 +35,13 @@ class CreateController extends AppController {
     # /create/exec
     public function exec() {
 
-        $title = $this->request->data['title'];
+        $title          = $this->request->data['title'];
+        $user_id        = 1;
 
-        #立てたスレのトップにリダイレクト
-        $this->redirect('/detail/1');
+        $created_thread_id = $this->LogicThread->create_thread( $this, $title, $user_id );
+
+        #トップにリダイレクト
+        $this->redirect("/detail/$created_thread_id");
     }
 
 }

@@ -28,7 +28,7 @@
 
 
 <div class="row" style="margin: 30px 0">
-<form action="/response/confirm/<?php echo $thread['id'] ?>" method="post">
+    <form action="/response/confirm/<?php echo $thread['id'] ?>" method="post">
         <div class="form-group">
             <label for="exampleInputEmail1">レスする</label>
             <input type="text" class="form-control" name="comment" placeholder="レスを入れて">

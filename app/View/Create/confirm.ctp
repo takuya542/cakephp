@@ -8,7 +8,6 @@
             <label for="exampleInputEmail1">すれたい確認</label>
             <input type="text" class="form-control" name="title" value="<?php echo $title ?>">
         </div>
-            <input type="hidden" class="form-control" name="csrf_token" value="aaa">
         <button type="submit" class="btn btn-default">つくるぜ</button>
     </form>
 </div>

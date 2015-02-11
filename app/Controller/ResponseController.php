@@ -6,7 +6,7 @@ class ResponseController extends AppController {
     public $autoLayout = true;
 
     #Modelのロード
-    public $uses = array('UserData', 'ThreadData', 'ThreadComment');
+    public $uses = array('UserData', 'ThreadData', 'ThreadComment', 'LogicThread');
 
 
     # セッションのチェック & ユーザオブジェクト生成 & 未ログインならリダイレクト & postリクエストかチェック
@@ -27,15 +27,15 @@ class ResponseController extends AppController {
         $this->set('thread_id', $thread_id);
 
         #csrfトークンの生成
-        debug($thread_id);
-        debug($comment);
     }
 
     # レス作成
     # /response/exec/1
     public function exec( $thread_id = null) {
 
+        $user_id   = 1;
         $comment   = $this->request->data['comment'];
+        $this->LogicThread->create_response( $this, $thread_id, $user_id, $comment );
 
         #レスしたスレのトップにリダイレクト
         $this->redirect("/detail/$thread_id");
