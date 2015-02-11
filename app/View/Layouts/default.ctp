@@ -2,18 +2,39 @@
 <html>
 <head>
 	<title>test</title>
+
+<!-- ToDo : CDN配信じゃなくて手元から -->
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css" rel="stylesheet">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+
 </head>
 <body>
-	<div id="container">
-		<div id="header"></div>
-		<div id="content">
 
-			<?php echo $this->Session->flash(); ?>
+<!-- 
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="/">けいじばん</a>
+        </div>
+        <div id="navbar" class="collapse navbar-collapse">
+          <ul class="nav navbar-nav">
+            <li><a href="#">ログイン</a></li>
+            <li><a href="#">すれたい作成</a></li>
+          </ul>
+        </div>
+      </div>
+    </nav>
 
-			<?php echo $this->fetch('content'); ?>
-		</div>
-		<div id="footer">
-		</div>
+-->
+
+	<div class="container" style="margin-top: 50px">
+		<?php echo $this->fetch('content'); ?>
 	</div>
 </body>
 

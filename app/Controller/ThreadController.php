@@ -23,7 +23,6 @@ class ThreadController extends AppController {
         $this->set('thread_list',  $multi_threads['thread_list']);
         $this->set('has_next',     $multi_threads["has_next"]);
 
-        debug($multi_threads);
     }
 
     # スレ詳細

@@ -9,30 +9,35 @@ class ResponseController extends AppController {
     public $uses = array('UserData', 'ThreadData', 'ThreadComment');
 
 
-    # セッションのチェック & ユーザオブジェクト生成 & 未ログインならリダイレクト
+    # セッションのチェック & ユーザオブジェクト生成 & 未ログインならリダイレクト & postリクエストかチェック
     public function beforeFilter() {
+
+        # methodのチェック
+        if ( $this->request->is('get') ) {
+            $this->redirect('/');
+        }
     }
 
     # レス確認
     # /response/confirm/1
     public function confirm( $thread_id = null) {
 
+        $comment = $this->request->data['comment'];
+        $this->set('comment',   $comment);
+        $this->set('thread_id', $thread_id);
+
         #csrfトークンの生成
         debug($thread_id);
+        debug($comment);
     }
 
     # レス作成
-    # /response/exec
-    public function exec() {
-        if ( $this->request->is('get') ) {
-            $this->redirect('/');
-        }
+    # /response/exec/1
+    public function exec( $thread_id = null) {
 
-        $thread_id = $this->request->data['Post']['thread_id'];
-        $user_id   = $this->request->data['Post']['user_id'];
-        $comment   = $this->request->data['Post']['comment'];
+        $comment   = $this->request->data['comment'];
 
         #レスしたスレのトップにリダイレクト
-        $this->redirect('/detail/1');
+        $this->redirect("/detail/$thread_id");
     }
 }
