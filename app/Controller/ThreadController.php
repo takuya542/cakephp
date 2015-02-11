@@ -9,12 +9,9 @@ class ThreadController extends AppController {
     public $uses = array('UserData', 'ThreadData', 'ThreadComment', 'LogicThread');
 
 
-    # セッションのチェック & ユーザオブジェクト生成
-    public function beforeFilter() {
-    }
-
     # Top / スレ一覧
     public function index( $page = 1 ) {
+
         $limit         = $this->_thread_num();
         $offset        = $this->_offset( $page, $limit );
         $comment_num   = $this->_top_comment_num();
@@ -27,6 +24,7 @@ class ThreadController extends AppController {
 
     # スレ詳細
     public function detail( $thread_id = null ) {
+
         $page          = isset( $this->request->query['page'] ) ? $this->request->query['page'] : 1;
         $limit         = $this->_comment_num();
         $offset        = $this->_offset( $page, $limit );

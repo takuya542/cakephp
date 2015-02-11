@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>test</title>
+	<title>けいじばん</title>
 
 <!-- ToDo : CDN配信じゃなくて手元から -->
 <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css" rel="stylesheet">
@@ -23,7 +23,12 @@
         </div>
         <div id="navbar" class="collapse navbar-collapse">
           <ul class="nav navbar-nav">
-            <li><a href="/login">ログイン</a></li>
+            <?php if ($USER): ?>
+                <li><a href="#"><?php echo ($USER['name']); ?>としてログイン中</a></li>
+                <li><a href="/logout">ログアウト</a></li>
+            <?php else: ?>
+                <li><a href="/login">ログイン</a></li>
+            <?php endif; ?>
           </ul>
         </div>
       </div>

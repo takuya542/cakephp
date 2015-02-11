@@ -1,34 +1,41 @@
 <?php
-/**
- * Application level Controller
- *
- * This file is application-wide controller file. You can put all
- * application-wide controller-related methods here.
- *
- * CakePHP(tm) : Rapid Development Framework (http://cakephp.org)
- * Copyright (c) Cake Software Foundation, Inc. (http://cakefoundation.org)
- *
- * Licensed under The MIT License
- * For full copyright and license information, please see the LICENSE.txt
- * Redistributions of files must retain the above copyright notice.
- *
- * @copyright     Copyright (c) Cake Software Foundation, Inc. (http://cakefoundation.org)
- * @link          http://cakephp.org CakePHP(tm) Project
- * @package       app.Controller
- * @since         CakePHP(tm) v 0.2.9
- * @license       http://www.opensource.org/licenses/mit-license.php MIT License
- */
-
 App::uses('Controller', 'Controller');
 
-/**
- * Application Controller
- *
- * Add your application-wide methods in the class below, your controllers
- * will inherit them.
- *
- * @package		app.Controller
- * @link		http://book.cakephp.org/2.0/en/controllers.html#the-app-controller
- */
 class AppController extends Controller {
+
+    public $uses = array('UserData', 'ThreadData', 'ThreadComment', 'LogicThread', 'LogicUser');
+    public $components = array('Cookie', 'Session');
+
+    public function beforeFilter() {
+        $facebook_id = $this->_decrypt_id( $this->Cookie->read('KJB_D') );
+        if ( $facebook_id ) {
+            $user_data  = $this->_get_user_data( $facebook_id );
+            $this->USER = $user_data['UserData'];
+            $this->set('USER', $user_data['UserData']);
+        } else {
+            $this->USER = null;
+            $this->set('USER', null);
+        }
+    }
+
+    public function afterFilter() {
+        # ToDo:tracking cookieの発行 & ロギング
+    }
+
+    protected function _get_user_data( $facebook_id ){
+        if ( $this->Session->check($facebook_id) ) {
+            return $this->Session->read( $facebook_id);
+        } else {
+            $user_data = $this->UserData->find('first', array(
+                'conditions' => array('facebook_id' => $facebook_id),
+            ));
+            $this->Session->write($facebook_id, $user_data);
+            return $user_data;
+        }
+    }
+
+    protected function _decrypt_id( $encrypted_id ){
+        # ToDo : 実サーバ上のみに存在するencrypted_secretを使用して復号化
+        return ( $encrypted_id ) ? $encrypted_id : null;
+    }
 }
