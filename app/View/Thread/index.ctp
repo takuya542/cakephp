@@ -17,6 +17,7 @@
 
     <h2>スレタイ:<?php echo $thread['title']; ?></h2>
     <h2>立てたやつ:<?php echo $thread['create_user']['name']; ?></h2>
+    <h2>更新日時:<?php echo $thread['updated_at']; ?></h2>
 
     <?php foreach ($thread['comments'] as $comment): ?>
     <ul>

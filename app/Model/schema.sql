@@ -8,7 +8,7 @@ use                       cake_db;
 drop table if exists user_data;
 create table user_data(
     id                 int                  auto_increment,
-    facebook_id        int               unsigned not null,
+    facebook_id        bigint            unsigned not null,
     name               varchar(255)               not null,
     gender             varchar(1)                 not null,  /* m or f */
     image              varchar(255)               not null,

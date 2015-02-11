@@ -14,5 +14,10 @@
     Router::connect('/response/confirm/:thread_id', array('controller' => 'response', 'action' => 'confirm'), array('pass' => array('thread_id')));
     Router::connect('/response/exec/:thread_id',    array('controller' => 'response', 'action' => 'exec'),    array('pass' => array('thread_id')));
 
+    # ログイン
+    Router::connect('/login',          array('controller' => 'fbconnect', 'action' => 'login'));
+    Router::connect('/login/callback', array('controller' => 'fbconnect', 'action' => 'callback'));
+    Router::connect('/logout',         array('controller' => 'fbconnect', 'action' => 'logout'));
+
     CakePlugin::routes();
     require CAKE . 'Config' . DS . 'routes.php';

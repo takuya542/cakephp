@@ -39,6 +39,7 @@ class LogicThread extends Model {
                     'gender'     => $create_user_data['UserData']["gender"],
                 ),
                 'created_at'  => $thread_val['ThreadData']['created_at'],
+                'updated_at'  => $thread_val['ThreadData']['updated_at'],
                 'comments'    => $this->_merge_hash( $comments, $users)
             ));
         }
@@ -96,9 +97,10 @@ class LogicThread extends Model {
             'updated_at' => time(),
         ));
         # スレの最終更新日時をupdate
-        $controller->ThreadData->set(array(
-            'updated_at' => time(),
-        ));
+        $controller->ThreadData->updateAll(
+            array( 'updated_at' => time()     ),
+            array( 'id'         => $thread_id )
+        );
         return 1;
     }
 
@@ -167,7 +169,7 @@ class LogicThread extends Model {
         return $controller->ThreadData->find('all', array(
             'limit'      => $limit,
             'offset'     => $offset,
-            'order'      => array('created_at' => 'desc' ),
+            'order'      => array('updated_at' => 'desc' ),
         ));
     }
 

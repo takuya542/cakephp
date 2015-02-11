@@ -10,7 +10,6 @@
 </head>
 <body>
 
-<!-- 
     <nav class="navbar navbar-inverse navbar-fixed-top">
       <div class="container">
         <div class="navbar-header">
@@ -24,14 +23,12 @@
         </div>
         <div id="navbar" class="collapse navbar-collapse">
           <ul class="nav navbar-nav">
-            <li><a href="#">ログイン</a></li>
-            <li><a href="#">すれたい作成</a></li>
+            <li><a href="/login">ログイン</a></li>
           </ul>
         </div>
       </div>
     </nav>
 
--->
 
 	<div class="container" style="margin-top: 50px">
 		<?php echo $this->fetch('content'); ?>
