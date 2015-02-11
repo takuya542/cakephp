@@ -25,6 +25,10 @@
 // Setup a 'default' cache configuration for use in the application.
 Cache::config('default', array('engine' => 'File'));
 
+App::build(array(
+    'Model' => array( APP . 'Model/Logic/')
+) );
+
 /**
  * The settings below can be used to set additional paths to models, views and controllers.
  *

@@ -58,11 +58,11 @@ insert into user_data (facebook_id,name,gender,image,created_at,updated_at)value
 );
 
 insert into user_data (facebook_id,name,gender,image,created_at,updated_at)values(
-2,"test_user_2","f","http://nukippo.com/image/nukippo_video_id_14626.png", UNIX_TIMESTAMP(), UNIX_TIMESTAMP() 
+2,"test_user_2","f","http://nukippo.com/image/nukippo_video_id_14626.png", UNIX_TIMESTAMP()+1, UNIX_TIMESTAMP()+1
 );
 
 insert into user_data (facebook_id,name,gender,image,created_at,updated_at)values(
-3,"test_user_3","f","http://nukippo.com/image/nukippo_video_id_14626.png", UNIX_TIMESTAMP(), UNIX_TIMESTAMP() 
+3,"test_user_3","f","http://nukippo.com/image/nukippo_video_id_14626.png", UNIX_TIMESTAMP()+2, UNIX_TIMESTAMP()+2 
 );
 
 insert into thread_data (create_user_id,title,created_at,updated_at)values(
@@ -70,7 +70,7 @@ insert into thread_data (create_user_id,title,created_at,updated_at)values(
 );
 
 insert into thread_data (create_user_id,title,created_at,updated_at)values(
-2,"thread_title2",UNIX_TIMESTAMP(), UNIX_TIMESTAMP()
+2,"thread_title2",UNIX_TIMESTAMP()+1, UNIX_TIMESTAMP()+1
 );
 
 insert into thread_comments (thread_id,user_id,comment,image,created_at,updated_at)values(
@@ -78,22 +78,22 @@ insert into thread_comments (thread_id,user_id,comment,image,created_at,updated_
 );
 
 insert into thread_comments (thread_id,user_id,comment,image,created_at,updated_at)values(
-1,2,"comment2 at thread1",null,UNIX_TIMESTAMP(), UNIX_TIMESTAMP()
+1,2,"comment2 at thread1",null,UNIX_TIMESTAMP()+1, UNIX_TIMESTAMP()+1
 );
 
 insert into thread_comments (thread_id,user_id,comment,image,created_at,updated_at)values(
-1,3,"comment3 at thread1",null,UNIX_TIMESTAMP(), UNIX_TIMESTAMP()
+1,3,"comment3 at thread1",null,UNIX_TIMESTAMP()+2, UNIX_TIMESTAMP()+2
 );
 
 insert into thread_comments (thread_id,user_id,comment,image,created_at,updated_at)values(
-2,1,"comment1 at thread2",null,UNIX_TIMESTAMP(), UNIX_TIMESTAMP()
+2,1,"comment1 at thread2",null,UNIX_TIMESTAMP()+3, UNIX_TIMESTAMP()+3
 );
 
 insert into thread_comments (thread_id,user_id,comment,image,created_at,updated_at)values(
-2,2,"comment2 at thread2",null,UNIX_TIMESTAMP(), UNIX_TIMESTAMP()
+2,2,"comment2 at thread2",null,UNIX_TIMESTAMP()+4, UNIX_TIMESTAMP()+4
 );
 
 insert into thread_comments (thread_id,user_id,comment,image,created_at,updated_at)values(
-2,3,"comment3 at thread2",null,UNIX_TIMESTAMP(), UNIX_TIMESTAMP()
+2,3,"comment3 at thread2",null,UNIX_TIMESTAMP()+5, UNIX_TIMESTAMP()+5
 );
 

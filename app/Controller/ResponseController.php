@@ -33,6 +33,6 @@ class ResponseController extends AppController {
         $comment   = $this->request->data['Post']['comment'];
 
         #レスしたスレのトップにリダイレクト
-        $this->redirect('/thread/detail?thread_id=1');
+        $this->redirect('/detail/1');
     }
 }
