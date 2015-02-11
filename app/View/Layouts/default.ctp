@@ -25,6 +25,7 @@
           <ul class="nav navbar-nav">
             <?php if ($USER): ?>
                 <li><a href="#"><?php echo ($USER['name']); ?>としてログイン中</a></li>
+                <img src="<?php echo ($USER['image']); ?>">
                 <li><a href="/logout">ログアウト</a></li>
             <?php else: ?>
                 <li><a href="/login">ログイン</a></li>

@@ -29,10 +29,19 @@ class FbconnectController extends AppController {
         if($facebook_id){ // 認証後
 
             # FB経由でユーザ情報取得
-            $me = $facebook->api('/me', array( 'fields' => 'id,name,gender,birthday' ));
+            $me  = $facebook->api('/me', array( 'fields' => 'id,name,gender,birthday' ));
+            $pic = $facebook->api('/me/picture','GET',array (
+                'type' => 'normal',
+                'redirect' => false,
+                'height' => '200',
+                'width' => '200',
+            ));
+            $img           = file_get_contents( $pic['data']['url']);
+            $img_file_path = 'img/'.$facebook_id.'.jpg';
+            file_put_contents($img_file_path, $img);
 
             # ユーザ情報の作成
-            $created_user_data = $this->LogicUser->create_user( $this, $me );
+            $created_user_data = $this->LogicUser->create_user( $this, $me, $img_file_path );
 
             # facebook_idをkeyにしてセッションにユーザ情報を保管
             $this->Session->write($facebook_id, $created_user_data);

@@ -2,7 +2,7 @@
 
 class LogicUser extends Model {
 
-    public function create_user( $controller, $facebook_user_data ) {
+    public function create_user( $controller, $facebook_user_data, $img_file_path ) {
 
         $user = $this->_get_user($controller, $facebook_user_data['id']);
         if ( $user ) {
@@ -12,7 +12,7 @@ class LogicUser extends Model {
                 'facebook_id' => $facebook_user_data['id'],
                 'name'        => $facebook_user_data['name'],
                 'gender'      => $facebook_user_data['gender'] == 'male' ? 'm' : 'f',
-                'image'       => "http://test.png",
+                'image'       => $img_file_path,
                 'created_at'  => time(),
                 'updated_at'  => time(),
             ));
