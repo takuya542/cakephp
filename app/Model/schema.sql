@@ -41,7 +41,7 @@ drop table if exists thread_comments;
 create table thread_comments (
     thread_id          int               unsigned not null,
     user_id            int               unsigned not null,
-    post               text                               ,
+    comment            text                               ,
     image              varchar(255)                       ,
     created_at         int               unsigned not null,
     updated_at         int               unsigned not null
@@ -73,27 +73,27 @@ insert into thread_data (create_user_id,title,created_at,updated_at)values(
 2,"thread_title2",UNIX_TIMESTAMP(), UNIX_TIMESTAMP()
 );
 
-insert into thread_comments (thread_id,user_id,post,image,created_at,updated_at)values(
-1,1,"post1 at thread1",null,UNIX_TIMESTAMP(), UNIX_TIMESTAMP()
+insert into thread_comments (thread_id,user_id,comment,image,created_at,updated_at)values(
+1,1,"comment1 at thread1",null,UNIX_TIMESTAMP(), UNIX_TIMESTAMP()
 );
 
-insert into thread_comments (thread_id,user_id,post,image,created_at,updated_at)values(
-1,2,"post2 at thread1",null,UNIX_TIMESTAMP(), UNIX_TIMESTAMP()
+insert into thread_comments (thread_id,user_id,comment,image,created_at,updated_at)values(
+1,2,"comment2 at thread1",null,UNIX_TIMESTAMP(), UNIX_TIMESTAMP()
 );
 
-insert into thread_comments (thread_id,user_id,post,image,created_at,updated_at)values(
-1,3,"post3 at thread1",null,UNIX_TIMESTAMP(), UNIX_TIMESTAMP()
+insert into thread_comments (thread_id,user_id,comment,image,created_at,updated_at)values(
+1,3,"comment3 at thread1",null,UNIX_TIMESTAMP(), UNIX_TIMESTAMP()
 );
 
-insert into thread_comments (thread_id,user_id,post,image,created_at,updated_at)values(
-2,1,"post1 at thread2",null,UNIX_TIMESTAMP(), UNIX_TIMESTAMP()
+insert into thread_comments (thread_id,user_id,comment,image,created_at,updated_at)values(
+2,1,"comment1 at thread2",null,UNIX_TIMESTAMP(), UNIX_TIMESTAMP()
 );
 
-insert into thread_comments (thread_id,user_id,post,image,created_at,updated_at)values(
-2,2,"post2 at thread2",null,UNIX_TIMESTAMP(), UNIX_TIMESTAMP()
+insert into thread_comments (thread_id,user_id,comment,image,created_at,updated_at)values(
+2,2,"comment2 at thread2",null,UNIX_TIMESTAMP(), UNIX_TIMESTAMP()
 );
 
-insert into thread_comments (thread_id,user_id,post,image,created_at,updated_at)values(
-2,3,"post3 at thread2",null,UNIX_TIMESTAMP(), UNIX_TIMESTAMP()
+insert into thread_comments (thread_id,user_id,comment,image,created_at,updated_at)values(
+2,3,"comment3 at thread2",null,UNIX_TIMESTAMP(), UNIX_TIMESTAMP()
 );
 
