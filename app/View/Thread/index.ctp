@@ -35,7 +35,7 @@
             <input type="text" class="form-control" name="comment" placeholder="レスを入れて">
         </div>
         <button type="submit" class="btn btn-default">確認画面へ</button>
-        <a data-toggle="modal" id="picModal" href="#picModal" class="btn btn-default">写真をせんたく</a>
+        <a href="#albumModal" data-toggle="modal" id="albumModal" class="btn btn-default">写真をせんたく</a>
     </form>
 </div>
 

@@ -13,7 +13,7 @@ class FbconnectController extends AppController {
     private function createFacebook() {
         return new Facebook(array(
             'appId'  => '924244504263211',
-            'secret' => '3e8fb618be7e300bddd4394c6d725995',
+            'secret' => 'dfc09a4c57dcc636bd68114bcb7ec84e',
         ));
     }
 
@@ -21,6 +21,7 @@ class FbconnectController extends AppController {
         $facebook  = $this->createFacebook();
         $login_url = $facebook->getLoginUrl(array(
             'redirect_uri' => 'http://dev.keijiban.com/login/callback',
+            'scope'        => 'user_photos',
         ));
         $this->redirect( $login_url );
     }
@@ -30,9 +31,14 @@ class FbconnectController extends AppController {
         $facebook_id = $facebook->getUser();//facebookユーザ情報取得
 
         if($facebook_id){ // 認証後
+            
+            # permission確認
+            #$permissions = $facebook->api("/$facebook_id/permissions");
+            #$this->log($permissions, LOG_DEBUG);
 
             # FB経由でユーザ情報取得
             $me  = $facebook->api('/me', array( 'fields' => 'id,name,gender,birthday' ));
+            $this->log($me, LOG_DEBUG);
             $pic = $facebook->api('/me/picture','GET',array (
                 'type' => 'normal',
                 'redirect' => false,
@@ -44,6 +50,7 @@ class FbconnectController extends AppController {
             file_put_contents($img_file_path, $img);
 
             # ユーザ情報の作成
+            # アルバム情報の永続化、ユーザ情報の更新が未実装..
             $created_user_data = $this->LogicUser->create_user( $this, $me, $img_file_path );
 
             # facebook_idをkeyにしてセッションにユーザ情報を保管

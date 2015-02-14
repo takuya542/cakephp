@@ -5,7 +5,11 @@
 
 <!-- ToDo : CDN配信じゃなくて手元から -->
 <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+<script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1/jquery-ui.min.js"></script>
+
+<link rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1/themes/ui-lightness/jquery-ui.css">
 <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css" rel="stylesheet">
+
 <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
 <script src="/js/common.js"></script>
 
@@ -42,50 +46,9 @@
 		<?php echo $this->fetch('content'); ?>
 	</div>
 
-
-
-
- <div class="modal" id="picModal" tabindex="-1" role="dialog" aria-labelledby="picModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="modal-header">
-          <button type="button" class="close" data-dismiss="modal">
-            <span aria-hidden="true">&#215;</span><span class="sr-only">閉じる</span>
-          </button>
-          <h4 class="modal-title">Static Modal タイトル</h4>
-        </div><!-- /modal-header -->
-        <div class="modal-body">
-          <p class="recipient">本文</p>
-          <p>
-            <a class="btn btn-info" href="#001" data-dismiss="modal">data-dismiss 有り</a>
-            <a class="btn btn-info" href="#002">data-dismiss 無し</a>
-          </p>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-default" data-dismiss="modal">閉じる</button>
-          <button type="button" class="btn btn-primary">変更を保存</button>
-        </div>
-      </div> <!-- /.modal-content -->
-    </div> <!-- /.modal-dialog -->
-  </div> <!-- /.modal -->
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+<div id="modal" title="画像を選択して下さい">
+    <!-- Ajaxで取得したhtmlが入る -->
+</div>
 
 </body>
 
