@@ -36,26 +36,33 @@ class AjaxController extends AppController {
                 array_push( $albums, array(
                     'id'    => $album['id'],
                     'name'  => $album['name'],
-    #                'count' => $album['count'],
                     'type'  => $album['type'],
                 ));
             }
             $this->set('albums', $albums);
-            $this->log($albums);
+            $this->log($albums, LOG_DEBUG);
         } else {
             throw new BadRequestException();
         }
     }
 
     public function pictures( $album_id = null ){
-        $this->log($album_id);
+        $facebook    = $this->createFacebook();
+        $facebook_id = $facebook->getUser();
 
-/*
         if($facebook_id){
-            $pictures  = $facebook->api("/$album_id/picture");
-            $this->log($pictures, LOG_DEBUG);
+            $pictures  = $facebook->api("/$album_id/photos");
+
+            $picture_links = array();
+            foreach ( $pictures['data'] as $picture ) {
+                array_push( $picture_links, $picture['source'] );
+            }
+            $this->set('picture_links', $picture_links);
+            $this->log($picture_links, LOG_DEBUG);
+        } else {
+            throw new BadRequestException();
         }
-*/
+
     }
 
 }

@@ -1,46 +1,45 @@
 $(document).ready(function() {
 
-    $("#albumModal").click(function(){
-
-        $('#modal').dialog('open');
-
-        $.ajax({
-            type:"get",
-            url:"/ajax/facebook/albums",
-            dataType:'html',
-        }).done(function(html){
-          $('#modal').append(html);
-        }).fail(function(XMLHttpRequest, textStatus, errorThrown){
-          //alert(textStatus);
-          //alert(errorThrown);
-          //alert(XMLHttpRequest);
-        }).always(function(json){
-          // 成功・失敗に関わらず通信が終了した際の処理
-        });
-
-    });
-
     $('#modal').dialog({
-    autoOpen: false,  // 自動でオープンしない
-        modal: true,      // モーダル表示する
-        resizable: false, // リサイズしない
-        draggable: false, // ドラッグしない
-        show: "clip",     // 表示時のエフェクト
-        hide: "fade"      // 非表示時のエフェクト
+    autoOpen: false,   // 自動でオープンしない
+        modal: true,   // モーダル表示する
+        hide: "fade",  // 非表示時のエフェクト
+        height: 600,
+        width: 900
     });
-
 
 });
+
+
+function albumModal(){
+
+    $('#modal > #album-list').remove();
+    $('#modal > #picture-list').remove();
+    $('#modal').dialog('open');
+
+    $.ajax({
+        type:"get",
+        url:"/ajax/facebook/albums",
+        dataType:'html'
+    }).done(function(html){
+        $('#modal').append(html);
+    }).fail(function(XMLHttpRequest, textStatus, errorThrown){
+        //alert(textStatus);
+        //alert(errorThrown);
+        //alert(XMLHttpRequest);
+    }).always(function(json){
+        // 成功・失敗に関わらず通信が終了した際の処理
+    });
+
+}
+
 
 function picModal(album_id){
     $('#modal > #album-list').remove();
     $.ajax({
         type:"get",
-        url:"/ajax/facebook/pictures",
-        dataType:'html',
-        data = {
-            album_id : album_id
-        }
+        url:"/ajax/facebook/pictures/"+album_id,
+        dataType:'html'
     }).done(function(html){
         $('#modal').append(html);
     }).fail(function(XMLHttpRequest, textStatus, errorThrown){
@@ -48,4 +47,9 @@ function picModal(album_id){
     }).always(function(json){
       // 成功・失敗に関わらず通信が終了した際の処理
     });
+}
+
+function picDecide(link){
+    $('#modal > #picture-list').remove();
+    $('#modal').dialog('close');
 }

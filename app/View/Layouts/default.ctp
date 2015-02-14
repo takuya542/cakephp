@@ -27,7 +27,7 @@
           </button>
           <a class="navbar-brand" href="/">けいじばん</a>
         </div>
-        <div id="navbar" class="collapse navbar-collapse">
+        <div id="navbar" class="collapse navbar-collapse navbar-right">
           <ul class="nav navbar-nav">
             <?php if ($USER): ?>
                 <li><a href="#"><?php echo ($USER['name']); ?>としてログイン中</a></li>
@@ -46,9 +46,7 @@
 		<?php echo $this->fetch('content'); ?>
 	</div>
 
-<div id="modal" title="画像を選択して下さい">
-    <!-- Ajaxで取得したhtmlが入る -->
-</div>
+<div id="modal" title="画像を選択して下さい"></div>
 
 </body>
 
