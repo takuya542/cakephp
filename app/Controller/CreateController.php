@@ -13,16 +13,6 @@ class CreateController extends AppController {
 #        )
 #    );
 
-    # セッションのチェック & ユーザオブジェクト生成 & 未ログインならリダイレクト & postリクエストかチェック
-    public function beforeFilter() {
-
-        # methodのチェック
-        if ( $this->request->is('get') ) {
-            $this->redirect('/');
-        }
-
-        #$this->Security->requireAuth("exec");
-    }
 
     # スレ立て確認
     # /create/confirm

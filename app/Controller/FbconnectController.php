@@ -7,6 +7,9 @@ class FbconnectController extends AppController {
     public $uses = array('UserData', 'ThreadData', 'ThreadComment', 'LogicThread', 'LogicUser');
     public $components = array('Cookie', 'Session');
 
+    public function beforeFilter() {
+    }
+
     private function createFacebook() {
         return new Facebook(array(
             'appId'  => '924244504263211',
@@ -37,7 +40,7 @@ class FbconnectController extends AppController {
                 'width' => '200',
             ));
             $img           = file_get_contents( $pic['data']['url']);
-            $img_file_path = 'img/'.$facebook_id.'.jpg';
+            $img_file_path = $facebook_id.'.jpg';
             file_put_contents($img_file_path, $img);
 
             # ユーザ情報の作成
@@ -74,6 +77,7 @@ class FbconnectController extends AppController {
                 'redirect_uri' => 'http://dev.keijiban.com',
             ));
             $this->redirect($logout_url);
+#            $this->redirect('/');
         } else {
             $this->redirect('/');
         }

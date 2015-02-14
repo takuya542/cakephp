@@ -8,16 +8,6 @@ class ResponseController extends AppController {
     #Modelのロード
     public $uses = array('UserData', 'ThreadData', 'ThreadComment', 'LogicThread');
 
-
-    # セッションのチェック & ユーザオブジェクト生成 & 未ログインならリダイレクト & postリクエストかチェック
-    public function beforeFilter() {
-
-        # methodのチェック
-        if ( $this->request->is('get') ) {
-            $this->redirect('/');
-        }
-    }
-
     # レス確認
     # /response/confirm/1
     public function confirm( $thread_id = null) {

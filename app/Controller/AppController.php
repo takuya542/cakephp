@@ -7,6 +7,8 @@ class AppController extends Controller {
     public $components = array('Cookie', 'Session');
 
     public function beforeFilter() {
+
+        # ログイン状態のチェック
         $facebook_id = $this->_decrypt_id( $this->Cookie->read('KJB_D') );
         if ( $facebook_id ) {
             $user_data  = $this->_get_user_data( $facebook_id );
@@ -16,6 +18,11 @@ class AppController extends Controller {
             $this->USER = null;
             $this->set('USER', null);
         }
+
+        # methodのチェック(post系endpointをはじく)
+        #if ( $this->request->is('get') ) {
+        #    $this->redirect('/');
+        #}
     }
 
     public function afterFilter() {
