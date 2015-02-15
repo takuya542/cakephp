@@ -18,6 +18,7 @@ class AjaxController extends AppController {
         ));
     }
 
+    # ToDo:jsonで返してクライアント側でごにょる
     public function albums(){
 
         $facebook    = $this->createFacebook();
@@ -37,6 +38,7 @@ class AjaxController extends AppController {
 
     }
 
+    # ToDo:jsonで返してクライアント側でごにょる
     public function pictures( $album_id = null ){
         $facebook    = $this->createFacebook();
         $facebook_id = $facebook->getUser();
