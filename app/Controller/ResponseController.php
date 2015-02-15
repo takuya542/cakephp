@@ -24,8 +24,8 @@ class ResponseController extends AppController {
             $this->redirect("/?invalidParams=1");
         }
 
-        $picture_id     = $this->request->data['picture_id'];
-        $picture_source = $this->request->data['picture_source'];
+        $picture_id     = isset( $this->request->data['picture_id'] )     ? $this->request->data['picture_id']     : null;
+        $picture_source = isset( $this->request->data['picture_source'] ) ? $this->request->data['picture_source'] : null;
 
         $this->set('comment',   $comment);
         $this->set('thread_id', $thread_id);

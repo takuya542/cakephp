@@ -32,6 +32,7 @@ class ThreadController extends AppController {
         $this->set('comments', $single_thread["comments"]);
         $this->set('thread',   $single_thread["thread"]);
         $this->set('has_next', $single_thread["has_next"]);
+        $this->set('page',     $page);
     }
 
     public function login_confirm(){

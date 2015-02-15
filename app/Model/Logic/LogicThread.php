@@ -138,7 +138,7 @@ class LogicThread extends Model {
             'conditions' => array('thread_id' => $thread_id),
             'limit'      => $limit,
             'offset'     => $offset,
-            'order'      => array('created_at' => 'desc' ),
+            'order'      => array('created_at' => 'asc' ),
         ));
     }
 
