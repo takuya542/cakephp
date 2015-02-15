@@ -41,7 +41,7 @@ create table thread_comments (
     thread_id          int               unsigned not null,
     user_id            int               unsigned not null,
     comment            text                               ,
-    image              varchar(255)                       ,
+    image              text                               ,
     created_at         int               unsigned not null,
     updated_at         int               unsigned not null
 ) type=InnoDB;

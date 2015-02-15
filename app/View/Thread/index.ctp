@@ -22,7 +22,9 @@
     <?php foreach ($thread['comments'] as $comment): ?>
     <ul>
         <li>コメント:<?php echo $comment['comment']; ?></li>
-        <li>誰:<?php echo $comment['name']; ?></li>
+        <li>画像投稿:<img src="<?php echo $comment['image']; ?>"></li>
+        <li>誰:<?php echo $comment['user_name']; ?></li>
+        <li>id:<?php echo $comment['user_id']; ?></li>
     </ul>
     <?php endforeach; ?>
 <a href="/detail/<?php echo $thread['id']; ?>">もっと見る</a>
@@ -34,8 +36,10 @@
             <label for="exampleInputEmail1">レスする</label>
             <input type="text" class="form-control" name="comment" placeholder="レスを入れて">
         </div>
-        <button type="submit" class="btn btn-default">確認画面へ</button>
         <a href="#albumModal" id="albumModal" class="btn btn-default" onClick="albumModal()">写真をせんたく</a>
+        <input type="hidden" id="picture_source" name="picture_source">
+        <input type="hidden" id="picture_id"     name="picture_id">
+        <button type="submit" class="btn btn-default">確認画面へ</button>
     </form>
 </div>
 

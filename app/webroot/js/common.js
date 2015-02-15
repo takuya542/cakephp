@@ -49,7 +49,9 @@ function picModal(album_id){
     });
 }
 
-function picDecide(link){
+function picDecide(id,source){
     $('#modal > #picture-list').remove();
+    $('#picture_id').val(id);
+    $('#picture_source').val(source);
     $('#modal').dialog('close');
 }

@@ -24,7 +24,9 @@
 <div class="row">
     <ul>
         <li>コメント:<?php echo $comment['comment']; ?></li>
-        <li>誰:<?php echo $comment['name']; ?></li>
+        <li>画像投稿:<img src="<?php echo $comment['image']; ?>"></li>
+        <li>誰:<?php echo $comment['user_name']; ?></li>
+        <li>id:<?php echo $comment['user_id']; ?></li>
     </ul>
 </div>
 <?php endforeach; ?>

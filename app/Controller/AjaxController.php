@@ -8,12 +8,11 @@ class AjaxController extends AppController {
     public $components = array('Cookie', 'Session');
 
     public function beforeFilter() {
-        #$this->autoRender = FALSE;
         $this->layout     = null;
 
         if($this->request->is('ajax')) {
         }else{
-#            throw new BadRequestException();
+            throw new BadRequestException();
         }
     }
 
@@ -40,7 +39,6 @@ class AjaxController extends AppController {
                 ));
             }
             $this->set('albums', $albums);
-            $this->log($albums, LOG_DEBUG);
         } else {
             throw new BadRequestException();
         }
@@ -53,12 +51,14 @@ class AjaxController extends AppController {
         if($facebook_id){
             $pictures  = $facebook->api("/$album_id/photos");
 
-            $picture_links = array();
+            $pictures_data = array();
             foreach ( $pictures['data'] as $picture ) {
-                array_push( $picture_links, $picture['source'] );
+                array_push( $pictures_data, array(
+                    'id'     => $picture['id'],
+                    'source' => $picture['source'],
+                ));
             }
-            $this->set('picture_links', $picture_links);
-            $this->log($picture_links, LOG_DEBUG);
+            $this->set('pictures_data', $pictures_data);
         } else {
             throw new BadRequestException();
         }
