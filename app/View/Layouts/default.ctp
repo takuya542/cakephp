@@ -42,7 +42,7 @@
     </nav>
 
 
-	<div class="container" style="margin-top: 50px">
+	<div class="container" style="margin-top: 100px">
 		<?php echo $this->fetch('content'); ?>
 	</div>
 

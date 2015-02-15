@@ -20,6 +20,7 @@
     Router::connect('/login',          array('controller' => 'fbconnect', 'action' => 'login'));
     Router::connect('/login/callback', array('controller' => 'fbconnect', 'action' => 'callback'));
     Router::connect('/logout',         array('controller' => 'fbconnect', 'action' => 'logout'));
+    Router::connect('/login/confirm',  array('controller' => 'thread',    'action' => 'login_confirm'));  #ログイン訴求
 
     #Ajax
     Router::connect('/ajax/facebook/albums',             array('controller' => 'ajax', 'action' => 'albums'));

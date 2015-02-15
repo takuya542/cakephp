@@ -9,7 +9,6 @@ class ResponseController extends AppController {
     #Modelのロード
     public $uses = array('UserData', 'ThreadData', 'ThreadComment', 'LogicThread');
 
-
     private function createFacebook() {
         return new Facebook(array(
             'appId'  => '924244504263211',
@@ -18,10 +17,13 @@ class ResponseController extends AppController {
     }
 
     # レス確認
-    # /response/confirm/1
     public function confirm( $thread_id = null) {
 
-        $comment        = $this->request->data['comment'];
+        $comment = $this->request->data['comment'];
+        if(!$comment){
+            $this->redirect("/?invalidParams=1");
+        }
+
         $picture_id     = $this->request->data['picture_id'];
         $picture_source = $this->request->data['picture_source'];
 
@@ -35,7 +37,6 @@ class ResponseController extends AppController {
     }
 
     # レス作成
-    # /response/exec/1
     public function exec( $thread_id = null) {
 
         $facebook    = $this->createFacebook();

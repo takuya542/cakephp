@@ -1,12 +1,30 @@
-<h1>index /list page</h1>
+<?php if ( isset ($invalidParams) ): ?>
+<div class="alert alert-danger" role="alert">
+  <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+  <span class="sr-only">Error:</span>
+    入力値が正しくありません
+</div>
+<?php endif; ?>
+
+<?php if ( isset ($invalidRequest) ): ?>
+<div class="alert alert-danger" role="alert">
+  <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+  <span class="sr-only">Error:</span>
+    不正なリクエストです
+</div>
+<?php endif; ?>
+
+
+<!-- スレ立て -->
+
 
 <!-- スレ立て -->
 <!-- ToDo:部品化 -->
 <div class="row" style="margin: 30px 0">
     <form action="/create/confirm" method="post">
         <div class="form-group">
-            <label for="exampleInputEmail1">スレ作成</label>
-            <input type="text" class="form-control" name="title" placeholder="すれたいを入れて">
+            <label for="exampleInputEmail1">スレッドを作成する</label>
+            <input type="text" class="form-control" name="title" placeholder="スレッドのタイトルを入力して下さい">
         </div>
         <button type="submit" class="btn btn-default">確認画面へ</button>
     </form>

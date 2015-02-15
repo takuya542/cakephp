@@ -71,6 +71,9 @@ class FbconnectController extends AppController {
         }
     }
 
+    public function confirm(){
+    }
+
     public function logout(){
         $facebook   = $this->createFacebook();
 
