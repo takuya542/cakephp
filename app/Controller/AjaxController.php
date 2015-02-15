@@ -4,7 +4,7 @@ App::import('Vendor','facebook',array('file' => 'facebook'.DS.'src'.DS.'facebook
 
 class AjaxController extends AppController {
 
-    public $uses = array('UserData', 'ThreadData', 'ThreadComment', 'LogicThread', 'LogicUser');
+    public $uses = array('UserData', 'ThreadData', 'ThreadComment', 'AlbumData', 'LogicThread', 'LogicUser');
     public $components = array('Cookie', 'Session');
 
     public function beforeFilter() {
@@ -19,26 +19,22 @@ class AjaxController extends AppController {
     }
 
     public function albums(){
+
         $facebook    = $this->createFacebook();
         $facebook_id = $facebook->getUser();
 
-        if($facebook_id){
-            $me = $facebook->api('/me', array( 'fields' => 'albums' ));
+        $albums = $this->AlbumData->find('all', array(
+            'conditions' => array('facebook_id' => $facebook_id,),
+        ));
 
-            $albums = array();
-            foreach ( $me['albums']['data'] as $album ) {
-                if( !preg_match( "/app|normal/", $album['type'] ) ) {
-                    array_push( $albums, array(
-                        'id'    => $album['id'],
-                        'name'  => $album['name'],
-                        'type'  => $album['type'],
-                    ));
-                }
+        $albums_data = array();
+        foreach ( $albums as $album ) {
+            if ( $this->_is_valid_album( $album['AlbumData']) ) {
+                array_push( $albums_data, $album );
             }
-            $this->set('albums', $albums);
-        } else {
-            throw new BadRequestException();
         }
+        $this->set('albums', $albums_data);
+
     }
 
     public function pictures( $album_id = null ){
@@ -62,4 +58,14 @@ class AjaxController extends AppController {
 
     }
 
+    protected function _is_valid_album( $album ) {
+        if ( isset( $album['count'] )
+             && $album['count'] > 0 
+             && !preg_match( "/app|normal/", $album['type'] )
+        ) {
+            return 1;
+        } else {
+            return null;
+        }
+    }
 }

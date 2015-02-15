@@ -27,6 +27,7 @@ function albumModal(){
         //alert(textStatus);
         //alert(errorThrown);
         //alert(XMLHttpRequest);
+        alert('通信に失敗しました');
     }).always(function(json){
         // 成功・失敗に関わらず通信が終了した際の処理
     });
@@ -36,14 +37,16 @@ function albumModal(){
 
 function picModal(album_id){
     $('#modal > #album-list').remove();
+    $('#modal').append("<img src=http://img.ysklog.net/loading.gif>");
     $.ajax({
         type:"get",
         url:"/ajax/facebook/pictures/"+album_id,
         dataType:'html'
     }).done(function(html){
+        $('#modal > img').remove();
         $('#modal').append(html);
     }).fail(function(XMLHttpRequest, textStatus, errorThrown){
-        alert(textStatus);
+        alert('通信に失敗しました');
     }).always(function(json){
       // 成功・失敗に関わらず通信が終了した際の処理
     });
@@ -53,5 +56,6 @@ function picDecide(id,source){
     $('#modal > #picture-list').remove();
     $('#picture_id').val(id);
     $('#picture_source').val(source);
+    //$('a > albumModal > .btn-target.text').text("選択済み");
     $('#modal').dialog('close');
 }
