@@ -17,18 +17,19 @@
 
 <!-- スレ立て -->
 <!-- ToDo:部品化 -->
-<div class="row" style="margin: 30px 0">
+<div class="row" style="margin-top: 10px; margin-bottom: 30px">
     <form action="/create/confirm" method="post">
         <div class="form-group">
             <label for="exampleInputEmail1">スレッドを作成する</label>
             <input type="text" class="form-control" name="title" placeholder="スレッドのタイトルを入力して下さい">
         </div>
-        <button type="submit" class="btn btn-default">確認画面へ</button>
+        <button type="submit" class="btn btn-primary">確認画面へ</button>
     </form>
 </div>
+<hr>
 
 <?php foreach ($thread_list as $thread): ?>
-<div class="row" style="margin-top: 20px">
+<div class="row" style="margin-bottom: 20px">
 
     <table class="table">
         <caption>スレッドID:<?php echo $thread['id']; ?></caption>
@@ -60,14 +61,14 @@
             <?php endforeach; ?>
         </tbody>
     </table>
+    <a href="/detail/<?php echo $thread['id']; ?>" class="btn btn-default" style="text-align: right">もっと見る</a>
 </div>
-<a href="/detail/<?php echo $thread['id']; ?>" class="btn btn-primary btn-lg btn-block">もっと見る</a>
 
-<div class="row" style="margin: 50px 0">
+<div class="row" style="margin-bottom: 50px">
     <form action="/response/confirm/<?php echo $thread['id'] ?>" method="post">
         <div class="form-group">
             <label for="exampleInputEmail1">レスする</label>
-            <input type="text" class="form-control" name="comment" placeholder="レスを入れて">
+            <input type="text" class="form-control" name="comment" placeholder="内容を必ず入力して下さい">
         </div>
         <?php if ($USER): ?>
             <a href="#albumModal" id="albumModal" class="btn btn-default" onClick="albumModal()">写真を投稿</a>
@@ -76,9 +77,10 @@
         <?php endif; ?>
         <input type="hidden" id="picture_source" name="picture_source">
         <input type="hidden" id="picture_id"     name="picture_id">
-        <button type="submit" class="btn btn-default">確認画面へ</button>
+        <button type="submit" class="btn btn-primary">確認画面へ</button>
     </form>
 </div>
+<hr>
 <?php endforeach; ?>
 
 <nav>

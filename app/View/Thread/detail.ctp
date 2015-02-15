@@ -1,17 +1,17 @@
 <!-- スレ立て -->
 <!-- ToDo:部品化 -->
-<div class="row" style="margin: 30px 0">
+<div class="row" style="margin-top: 10px; margin-bottom: 30px">
     <form action="/create/confirm" method="post">
         <div class="form-group">
             <label for="exampleInputEmail1">スレッドを作成する</label>
             <input type="text" class="form-control" name="title" placeholder="スレッドのタイトルを入力して下さい">
         </div>
-        <button type="submit" class="btn btn-default">確認画面へ</button>
+        <button type="submit" class="btn btn-primary">確認画面へ</button>
     </form>
 </div>
 
 
-<div class="row" style="margin: 30px 0">
+<div class="row" style="margin-bottom: 20px">
 <table class="table">
     <caption>スレッド:<?php echo $thread['title']; ?></caption>
     <thead>
@@ -61,11 +61,11 @@
   </ul>
 </nav>
 
-<div class="row" style="margin: 30px 0">
+<div class="row">
     <form action="/response/confirm/<?php echo $thread['id'] ?>" method="post">
         <div class="form-group">
             <label for="exampleInputEmail1">レスする</label>
-            <input type="text" class="form-control" name="comment" placeholder="レスを入れて">
+            <input type="text" class="form-control" name="comment" placeholder="内容を必ず入力して下さい">
         </div>
         <?php if ($USER): ?>
             <a href="#albumModal" id="albumModal" class="btn btn-default btn-target" onClick="albumModal()">写真を投稿</a>
@@ -74,6 +74,6 @@
         <?php endif; ?>
         <input type="hidden" id="picture_source" name="picture_source">
         <input type="hidden" id="picture_id"     name="picture_id">
-        <button type="submit" class="btn btn-default">確認画面へ</button>
+        <button type="submit" class="btn btn-primary">確認画面へ</button>
     </form>
 </div>
