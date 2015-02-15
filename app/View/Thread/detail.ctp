@@ -43,6 +43,24 @@
 </table>
 </div>
 
+<nav>
+  <ul class="pager">
+
+    <?php if ( $pager['has_previous'] ): ?>
+    <li><a href="/detail/<?php echo ($thread['id']); ?>?page=<?php echo($pager['page']-1)?>">Previous</a></li>
+    <?php else: ?>
+        <li class="disabled"><a href="#">Previous</a></li>
+    <?php endif; ?>
+
+    <?php if ( $pager['has_next'] ): ?>
+        <li><a href="/detail/<?php echo ($thread['id']); ?>?page=<?php echo($pager['page']+1)?> ">Next</a></li>
+    <?php else: ?>
+        <li class="disabled"><a href="#">Next</a></li>
+    <?php endif; ?>
+
+  </ul>
+</nav>
+
 <div class="row" style="margin: 30px 0">
     <form action="/response/confirm/<?php echo $thread['id'] ?>" method="post">
         <div class="form-group">

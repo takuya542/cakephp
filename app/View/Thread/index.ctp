@@ -79,7 +79,18 @@
 
 <nav>
   <ul class="pager">
-    <li><a href="/pages/1">Previous</a></li>
-    <li><a href="/pages/2">Next</a></li>
+
+    <?php if ( $pager['has_previous'] ): ?>
+        <li><a href="/pages/<?php echo ($pager['page']-1); ?>">Previous</a></li>
+    <?php else: ?>
+        <li class="disabled"><a href="#">Previous</a></li>
+    <?php endif; ?>
+
+    <?php if ( $pager['has_next'] ): ?>
+        <li><a href="/pages/<?php echo ($pager['page']+1); ?>">Next</a></li>
+    <?php else: ?>
+        <li class="disabled"><a href="#">Next</a></li>
+    <?php endif; ?>
+
   </ul>
 </nav>

@@ -17,8 +17,15 @@ class ThreadController extends AppController {
         $comment_num   = $this->_top_comment_num();
         $multi_threads = $this->LogicThread->fetch_multi_thread( $this, $comment_num, $limit, $offset );
 
+        $this->log($multi_threads["has_next"],LOG_DEBUG);
+        $this->log($page,LOG_DEBUG);
+
         $this->set('thread_list',  $multi_threads['thread_list']);
-        $this->set('has_next',     $multi_threads["has_next"]);
+        $this->set('pager', array(
+            'page'         => $page,
+            'has_next'     => $multi_threads["has_next"],
+            'has_previous' =>( $page > 1 ) ? 1 : null,
+        ));
     }
 
     # スレ詳細
@@ -31,8 +38,15 @@ class ThreadController extends AppController {
 
         $this->set('comments', $single_thread["comments"]);
         $this->set('thread',   $single_thread["thread"]);
-        $this->set('has_next', $single_thread["has_next"]);
-        $this->set('page',     $page);
+
+        $this->log($single_thread["has_next"],LOG_DEBUG);
+        $this->log($page,LOG_DEBUG);
+
+        $this->set('pager', array(
+            'page'         => $page,
+            'has_next'     => $single_thread["has_next"],
+            'has_previous' =>( $page > 1 ) ? 1 : null,
+        ));
     }
 
     public function login_confirm(){
