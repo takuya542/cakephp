@@ -67,25 +67,16 @@ class AppController extends Controller {
 
     protected function _is_post_only( $controller ){
         $regexp = preg_match("/create|response/",$controller);
-        $this->log("post","debug");
-        $this->log($controller,"debug");
-        $this->log($regexp,"debug");
         return ( $regexp ) ? 1 : null;
     }
 
     protected function _is_ajax_only( $controller ){
         $regexp = preg_match("/ajax/",$controller);
-        $this->log("ajax","debug");
-        $this->log($controller,"debug");
-        $this->log($regexp,"debug");
         return ( $regexp ) ? 1 : null;
     }
 
     protected function _is_authz_required( $controller ){
         $regexp = preg_match("/create|response/",$controller);
-        $this->log("authz","debug");
-        $this->log($controller,"debug");
-        $this->log($regexp,"debug");
         return ( $regexp ) ? 1 : null;
     }
 }

@@ -31,7 +31,8 @@
 <div class="row" style="margin-top: 20px">
 
     <table class="table">
-        <caption>スレッド:<?php echo $thread['title']; ?></caption>
+        <caption>スレッドID:<?php echo $thread['id']; ?></caption>
+        <caption>スレッド名:<?php echo $thread['title']; ?></caption>
         <thead>
             <tr>
                 <th>ID</th>

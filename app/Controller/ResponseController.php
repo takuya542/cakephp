@@ -44,8 +44,9 @@ class ResponseController extends AppController {
 
         $user_id    = $this->USER['id'];
         $comment    = $this->request->data['comment'];
-        $picture_id = $this->request->data['picture_id'];
-        $picture_source = $this->request->data['picture_source'];
+
+        $picture_id     = isset( $this->request->data['picture_id'] )     ? $this->request->data['picture_id']     : null;
+        $picture_source = isset( $this->request->data['picture_source'] ) ? $this->request->data['picture_source'] : null;
 
         /*
         $img           = file_get_contents( $picture_source );

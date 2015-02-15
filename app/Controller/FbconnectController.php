@@ -37,7 +37,7 @@ class FbconnectController extends AppController {
             #$this->log($permissions, LOG_DEBUG);
 
             # FB経由でユーザ情報取得
-            $me  = $facebook->api('/me', array( 'fields' => 'id,name,gender,birthday' ));
+            $me  = $facebook->api('/me', array( 'fields' => 'id,name,gender,birthday,albums' ));
             $this->log($me, LOG_DEBUG);
             $pic = $facebook->api('/me/picture','GET',array (
                 'type' => 'normal',

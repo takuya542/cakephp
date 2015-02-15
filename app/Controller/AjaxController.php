@@ -8,12 +8,7 @@ class AjaxController extends AppController {
     public $components = array('Cookie', 'Session');
 
     public function beforeFilter() {
-        $this->layout     = null;
-
-        if($this->request->is('ajax')) {
-        }else{
-            throw new BadRequestException();
-        }
+        $this->layout = null;
     }
 
     private function createFacebook() {
@@ -32,11 +27,13 @@ class AjaxController extends AppController {
 
             $albums = array();
             foreach ( $me['albums']['data'] as $album ) {
-                array_push( $albums, array(
-                    'id'    => $album['id'],
-                    'name'  => $album['name'],
-                    'type'  => $album['type'],
-                ));
+                if( !preg_match( "/app|normal/", $album['type'] ) ) {
+                    array_push( $albums, array(
+                        'id'    => $album['id'],
+                        'name'  => $album['name'],
+                        'type'  => $album['type'],
+                    ));
+                }
             }
             $this->set('albums', $albums);
         } else {

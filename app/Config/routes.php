@@ -5,6 +5,7 @@
     #スレ閲覧
     Router::connect('/',                       array('controller' => 'thread', 'action' => 'index'),  array('pass' => array('page')) );
     Router::connect('/index',                  array('controller' => 'thread', 'action' => 'index'),  array('pass' => array('page')) );
+    Router::connect('/jpg',                    array('controller' => 'thread', 'action' => 'index'),  array('pass' => array('page')) );
     Router::connect('/pages/:page',            array('controller' => 'thread', 'action' => 'index'),  array('pass' => array('page')) );
     Router::connect('/detail/:thread_id',      array('controller' => 'thread', 'action' => 'detail'), array('pass' => array('thread_id')) );
 
