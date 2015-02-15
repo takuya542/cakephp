@@ -30,7 +30,7 @@
         <div id="navbar" class="collapse navbar-collapse navbar-right">
           <ul class="nav navbar-nav">
             <?php if ($USER): ?>
-                <li><a href="#"><?php echo ($USER['name']); ?>としてログイン中</a></li>
+                <li><a href="#"><?php echo ($USER['name']); ?>としてログイン中(last login:<?php echo date("Y年 n月 j日" , $USER['updated_at']); ?>)</a></li>
                 <li><?php echo $this->Html->image($USER['image'], array('height' => 45, 'width' => 45)); ?></li>
                 <li><a href="/logout">ログアウト</a></li>
             <?php else: ?>

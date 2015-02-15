@@ -50,7 +50,7 @@ class FbconnectController extends AppController {
             file_put_contents($img_file_path, $img);
 
             # ユーザ情報の作成
-            # アルバム情報の永続化、ユーザ情報の更新が未実装..
+            # ToDo:アルバム情報の永続化+リフレッシュの仕組み
             $created_user_data = $this->LogicUser->create_user( $this, $me, $img_file_path );
 
             # facebook_idをkeyにしてセッションにユーザ情報を保管
@@ -75,19 +75,22 @@ class FbconnectController extends AppController {
     }
 
     public function logout(){
-        $facebook   = $this->createFacebook();
+        $facebook    = $this->createFacebook();
+        $facebook_id = $facebook->getUser();//facebookユーザ情報取得
 
         if ( $this->Cookie->check('KJB_D') ) {
 
             #Cookieの破棄
             $this->Cookie->delete('KJB_D');
 
+            # セッションのユーザ情報を破棄
+            $this->Session->delete($facebook_id);
+
             #facebookからのログアウト
             $logout_url = $facebook->getLogoutUrl(array(
                 'redirect_uri' => 'http://dev.keijiban.com',
             ));
             $this->redirect($logout_url);
-#            $this->redirect('/');
         } else {
             $this->redirect('/');
         }

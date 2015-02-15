@@ -4,7 +4,7 @@
             <label for="exampleInputEmail1">以下の内容でレスを返します</label>
             <input type="text" class="form-control" name="comment" value="<?php echo $comment ?>" readonly="readonly">
             <label for="exampleInputEmail1">投稿する画像</label>
-            <img src="<?php echo $picture_source ?>">
+            <img src="<?php echo $picture_source ?>" width=200 height=200>
         </div>
             <input type="hidden" class="form-control" name="csrf_token" value="aaa">
             <input type="hidden" class="form-control" name="picture_id"     value="<?php echo $picture_id ?>">
