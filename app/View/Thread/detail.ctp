@@ -13,7 +13,8 @@
 
 <div class="row" style="margin-bottom: 20px">
 <table class="table">
-    <caption>スレッド:<?php echo $thread['title']; ?></caption>
+    <caption>スレッド : <?php echo $thread['title']; ?></caption>
+    <caption>並び順 : 昇順</caption>
     <thead>
         <tr>
             <th>ID</th>

@@ -32,8 +32,8 @@
 <div class="row" style="margin-bottom: 20px">
 
     <table class="table">
-        <caption>スレッドID:<?php echo $thread['id']; ?></caption>
-        <caption>スレッド名:<?php echo $thread['title']; ?></caption>
+        <caption>スレッドID : <?php echo $thread['id']; ?></caption>
+        <caption>スレッド名 : <?php echo $thread['title']; ?></caption>
         <thead>
             <tr>
                 <th>ID</th>
@@ -71,7 +71,7 @@
             <input type="text" class="form-control" name="comment" placeholder="内容を必ず入力して下さい">
         </div>
         <?php if ($USER): ?>
-            <a href="#albumModal" id="albumModal" class="btn btn-default" onClick="albumModal()">写真を投稿</a>
+            <a href="#albumModal" id="albumModal" class="btn btn-default" onClick="albumModal(this)">写真を投稿</a>
         <?php else: ?>
             <a href="/login/confirm" class="btn btn-default"">写真を投稿</a>
         <?php endif; ?>

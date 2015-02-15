@@ -4,14 +4,14 @@ $(document).ready(function() {
     autoOpen: false,   // 自動でオープンしない
         modal: true,   // モーダル表示する
         hide: "fade",  // 非表示時のエフェクト
-        height: 600,
+        height: 700,
         width: 900
     });
 
 });
 
 
-function albumModal(){
+function albumModal(self){
 
     $('#modal > #album-list').remove();
     $('#modal > #picture-list').remove();
@@ -53,9 +53,13 @@ function picModal(album_id){
 }
 
 function picDecide(id,source){
+
     $('#modal > #picture-list').remove();
     $('#picture_id').val(id);
     $('#picture_source').val(source);
-    //$('a > albumModal > .btn-target.text').text("選択済み");
+
+    $('#albumModal').attr('disabled', 'disabled');
+    $('#albumModal').text("写真を選択済みです");
     $('#modal').dialog('close');
+
 }

@@ -46,7 +46,7 @@
 		<?php echo $this->fetch('content'); ?>
 	</div>
 
-<div id="modal" title="画像を選択して下さい"></div>
+<div id="modal" title="アルバムから画像を選択して下さい"></div>
 
 </body>
 
