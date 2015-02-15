@@ -8,8 +8,7 @@ class LogicUser extends Model {
 
         $user = $this->_get_user($controller, $facebook_user_data['id']);
 
-        # ToDo1:ユーザ情報に更新がある場合はアップデート
-        # ToDo2:アルバム情報の永続化.ajaxで都度たたいてもいいけど、ある程度キャッシュさせといてもいいはず..
+        # ToDo1:ユーザ / アルバム情報に更新がある場合は現マスタデータとの差分アップデート / insert
         if ( $user ) {
             # 最終ログイン日時をアップデート
             $controller->UserData->updateAll(
@@ -18,6 +17,23 @@ class LogicUser extends Model {
             );
             return $user;
         } else {
+
+            # アルバムデータ
+            # ToDo: cakephpでのバルクインサートよくわからない...
+            foreach( $facebook_user_data['albums']['data'] as $album ) {
+                $controller->AlbumData->save(array(
+                    'facebook_id' => $facebook_user_data['id'],
+                    'album_id'    => $album['id'],
+                    'name'        => $album['name'],
+                    'type'        => $album['type'],
+                    'count'       => isset( $album['count'] ) ? $album['count'] : 0,
+                    'link'        => $album['link'],
+                    'created_at'  => time(),
+                    'updated_at'  => time(),
+                ));
+            }
+
+            # ユーザデータ
             return $controller->UserData->save(array(
                 'facebook_id' => $facebook_user_data['id'],
                 'name'        => $facebook_user_data['name'],

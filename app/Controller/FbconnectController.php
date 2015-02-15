@@ -4,7 +4,7 @@ App::import('Vendor','facebook',array('file' => 'facebook'.DS.'src'.DS.'facebook
 
 class FbconnectController extends AppController {
 
-    public $uses = array('UserData', 'ThreadData', 'ThreadComment', 'LogicThread', 'LogicUser');
+    public $uses = array('UserData', 'ThreadData', 'ThreadComment', 'AlbumData', 'LogicThread', 'LogicUser');
     public $components = array('Cookie', 'Session');
 
     public function beforeFilter() {

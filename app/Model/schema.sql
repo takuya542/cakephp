@@ -51,17 +51,21 @@ alter table thread_comments
 
 
 /* アルバム情報保存用 */
-drop table if exists album_data 
+drop table if exists album_data;
 create table album_data (
     facebook_id        bigint            unsigned not null,
+    album_id           bigint            unsigned not null,
     name               varchar(255)               not null,
+    type               varchar(20)                not null,
+    count              int                       default 0,
+    link               varchar(1024)              not null,
     created_at         int               unsigned not null,
-    updated_at         int               unsigned not null,  /* ログインのタイミングでアップデート*/
-    primary key(facebook_id)
+    updated_at         int               unsigned not null
 );
 
-alter table thread_comments
- add index   i1   (updated_at); /* スレッドフロート式で取得用 */
+/* facebook_id x album_idでuniq */
+alter table album_data
+ add primary key (facebook_id,album_id);
 
 
 
