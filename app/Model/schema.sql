@@ -50,6 +50,20 @@ alter table thread_comments
  add index   i1   (updated_at); /* スレッドフロート式で取得用 */
 
 
+/* アルバム情報保存用 */
+drop table if exists album_data 
+create table album_data (
+    facebook_id        bigint            unsigned not null,
+    name               varchar(255)               not null,
+    created_at         int               unsigned not null,
+    updated_at         int               unsigned not null,  /* ログインのタイミングでアップデート*/
+    primary key(facebook_id)
+);
+
+alter table thread_comments
+ add index   i1   (updated_at); /* スレッドフロート式で取得用 */
+
+
 
 /* テストデータ */
 insert into user_data (facebook_id,name,gender,image,created_at,updated_at)values(
