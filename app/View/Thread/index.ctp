@@ -69,7 +69,11 @@
             <label for="exampleInputEmail1">レスする</label>
             <input type="text" class="form-control" name="comment" placeholder="レスを入れて">
         </div>
-        <a href="#albumModal" id="albumModal" class="btn btn-default" onClick="albumModal()">写真を投稿</a>
+        <?php if ($USER): ?>
+            <a href="#albumModal" id="albumModal" class="btn btn-default" onClick="albumModal()">写真を投稿</a>
+        <?php else: ?>
+            <a href="/login/confirm" class="btn btn-default"">写真を投稿</a>
+        <?php endif; ?>
         <input type="hidden" id="picture_source" name="picture_source">
         <input type="hidden" id="picture_id"     name="picture_id">
         <button type="submit" class="btn btn-default">確認画面へ</button>

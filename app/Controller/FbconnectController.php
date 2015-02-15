@@ -50,7 +50,6 @@ class FbconnectController extends AppController {
             file_put_contents($img_file_path, $img);
 
             # ユーザ情報の作成
-            # ToDo:アルバム情報の永続化+リフレッシュの仕組み
             $created_user_data = $this->LogicUser->create_user( $this, $me, $img_file_path );
 
             # facebook_idをkeyにしてセッションにユーザ情報を保管

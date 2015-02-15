@@ -17,9 +17,6 @@ class ThreadController extends AppController {
         $comment_num   = $this->_top_comment_num();
         $multi_threads = $this->LogicThread->fetch_multi_thread( $this, $comment_num, $limit, $offset );
 
-        $this->log($multi_threads["has_next"],LOG_DEBUG);
-        $this->log($page,LOG_DEBUG);
-
         $this->set('thread_list',  $multi_threads['thread_list']);
         $this->set('pager', array(
             'page'         => $page,
@@ -38,9 +35,6 @@ class ThreadController extends AppController {
 
         $this->set('comments', $single_thread["comments"]);
         $this->set('thread',   $single_thread["thread"]);
-
-        $this->log($single_thread["has_next"],LOG_DEBUG);
-        $this->log($page,LOG_DEBUG);
 
         $this->set('pager', array(
             'page'         => $page,

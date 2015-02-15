@@ -5,7 +5,6 @@ class CreateController extends AppController {
     public $autoRender = true;
     public $autoLayout = true;
 
-    #Modelのロード
     public $uses = array('UserData', 'ThreadData', 'ThreadComment', 'LogicThread');
 
     # スレ立て確認
@@ -27,7 +26,7 @@ class CreateController extends AppController {
         }
         $created_thread_id = $this->LogicThread->create_thread( $this, $title, $user_id );
 
-        #トップにリダイレクト
+        #作成したスレのトップにリダイレクト
         $this->redirect("/detail/$created_thread_id");
     }
 

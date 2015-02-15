@@ -6,7 +6,6 @@ class ResponseController extends AppController {
     public $autoRender = true;
     public $autoLayout = true;
 
-    #Modelのロード
     public $uses = array('UserData', 'ThreadData', 'ThreadComment', 'LogicThread');
 
     private function createFacebook() {
@@ -33,7 +32,6 @@ class ResponseController extends AppController {
         $this->set('picture_id',     $picture_id);
         $this->set('picture_source', $picture_source);
 
-        #csrfトークンの生成
     }
 
     # レス作成

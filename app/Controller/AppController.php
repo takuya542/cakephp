@@ -6,6 +6,8 @@ class AppController extends Controller {
     public $uses = array('UserData', 'ThreadData', 'ThreadComment', 'LogicThread', 'LogicUser');
     public $components = array('Cookie', 'Session');
 
+    # ToDo : routeに各種attribute持たせてどのフィルタ通すか裁きたい
+    # allow http methodとかcsrfとかログイン必須とかetc...
     public function beforeFilter() {
 
         # ログイン状態のチェック
@@ -20,16 +22,17 @@ class AppController extends Controller {
         }
 
         # ログイン必須のページの場合、ログイン訴求ページに遷移
+        # ToDo:calback_url持たせてログイン飛ばされる前の画面に戻す
         if ( $this->_is_authz_required($this->request->params['controller']) && (!$this->USER) )  {
             $this->redirect('/login/confirm');
         }
 
-        #methodのチェック(postリクエストの対応)
+        # methodのチェック(postリクエストの対応)
         if ( $this->_is_post_only($this->request->params['controller']) && (!$this->request->is('post')) ) {
             $this->redirect('/?invalidRequest=1');
         }
 
-        #methodのチェック(ajaxリクエストの対応)
+        # methodのチェック(ajaxリクエストの対応)
         if ( $this->_is_ajax_only($this->request->params['controller']) && (!$this->request->is('ajax')) ) {
             $this->redirect('/?invalidRequest=1');
         }
@@ -42,10 +45,21 @@ class AppController extends Controller {
             $this->set('invalidParams',1);
         }
 
+        if ( $this->_is_csrf_embed_required($this->request->params['action']) && $this->USER ) {
+            $this->set('csrf_token',$this->_create_csrf_token( $this->USER['id']) );
+        }
+
+        # CSRFトークンのverification
+        # ToDo : CakePHPのsecurityの仕組みに乗っかる
+        if ( $this->_is_csrf_verify_required($this->request->params['action']) && $this->USER ) {
+            if ( !$this->_is_csrf_verified( $this->request->data['csrf_token'], $this->USER['id']) ) {
+                $this->redirect('/?invalidRequest=1');
+            }
+        }
+
     }
 
     public function afterFilter() {
-        # ToDo:tracking cookieの発行 & ロギング
     }
 
     protected function _get_user_data( $facebook_id ){
@@ -78,5 +92,25 @@ class AppController extends Controller {
     protected function _is_authz_required( $controller ){
         $regexp = preg_match("/create|response/",$controller);
         return ( $regexp ) ? 1 : null;
+    }
+
+    protected function _is_csrf_embed_required( $controller ){
+        $regexp = preg_match("/confirm/",$controller);
+        return ( $regexp ) ? 1 : null;
+    }
+
+    protected function _is_csrf_verify_required( $controller ){
+        $regexp = preg_match("/exec/",$controller);
+        return ( $regexp ) ? 1 : null;
+    }
+
+    # ToDo : 時刻 + encrypted_secretを元に認証する。というかCakePhpの仕組みにのっかる
+    protected function _is_csrf_verified( $token, $user_id ){
+        return ( $token == $user_id) ? 1 : null;
+    }
+
+    # ToDo : 時刻 + encrypted_secretから生成する。というかCakePhpの仕組みにのっかる
+    protected function _create_csrf_token( $user_id ){
+        return $user_id;
     }
 }

@@ -4,8 +4,6 @@ class LogicUser extends Model {
 
     public function create_user( $controller, $facebook_user_data, $img_file_path ) {
 
-        $this->log($facebook_user_data['albums'], LOG_DEBUG);
-
         $user = $this->_get_user($controller, $facebook_user_data['id']);
 
         # ToDo1:ユーザ / アルバム情報に更新がある場合は現マスタデータとの差分アップデート / insert

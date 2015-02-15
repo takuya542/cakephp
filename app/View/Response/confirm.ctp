@@ -12,7 +12,7 @@
                 なし
             <?php endif; ?>
         </div>
-            <input type="hidden" class="form-control" name="csrf_token" value="aaa">
+            <input type="hidden" class="form-control" name="csrf_token" value="<?php echo $csrf_token; ?>">
         <button type="submit" class="btn btn-default">レスを作成する</button>
         <a href="/" class="btn btn-default">戻る</a>
     </form>
