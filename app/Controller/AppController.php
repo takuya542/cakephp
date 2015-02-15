@@ -7,6 +7,8 @@ class AppController extends Controller {
     public $components = array('Cookie', 'Session');
 
     public function beforeFilter() {
+
+        # ログイン状態のチェック
         $facebook_id = $this->_decrypt_id( $this->Cookie->read('KJB_D') );
         if ( $facebook_id ) {
             $user_data  = $this->_get_user_data( $facebook_id );
@@ -16,6 +18,30 @@ class AppController extends Controller {
             $this->USER = null;
             $this->set('USER', null);
         }
+
+        # ログイン必須のページの場合、ログイン訴求ページに遷移
+        if ( $this->_is_authz_required($this->request->params['controller']) && (!$this->USER) )  {
+            $this->redirect('/login/confirm');
+        }
+
+        #methodのチェック(postリクエストの対応)
+        if ( $this->_is_post_only($this->request->params['controller']) && (!$this->request->is('post')) ) {
+            $this->redirect('/?invalidRequest=1');
+        }
+
+        #methodのチェック(ajaxリクエストの対応)
+        if ( $this->_is_ajax_only($this->request->params['controller']) && (!$this->request->is('ajax')) ) {
+            $this->redirect('/?invalidRequest=1');
+        }
+
+        if ( isset( $this->request->query['invalidRequest'] ) ) {
+            $this->set('invalidRequest',1);
+        }
+
+        if ( isset( $this->request->query['invalidParams'] ) ) {
+            $this->set('invalidParams',1);
+        }
+
     }
 
     public function afterFilter() {
@@ -37,5 +63,29 @@ class AppController extends Controller {
     protected function _decrypt_id( $encrypted_id ){
         # ToDo : 実サーバ上のみに存在するencrypted_secretを使用して復号化
         return ( $encrypted_id ) ? $encrypted_id : null;
+    }
+
+    protected function _is_post_only( $controller ){
+        $regexp = preg_match("/create|response/",$controller);
+        $this->log("post","debug");
+        $this->log($controller,"debug");
+        $this->log($regexp,"debug");
+        return ( $regexp ) ? 1 : null;
+    }
+
+    protected function _is_ajax_only( $controller ){
+        $regexp = preg_match("/ajax/",$controller);
+        $this->log("ajax","debug");
+        $this->log($controller,"debug");
+        $this->log($regexp,"debug");
+        return ( $regexp ) ? 1 : null;
+    }
+
+    protected function _is_authz_required( $controller ){
+        $regexp = preg_match("/create|response/",$controller);
+        $this->log("authz","debug");
+        $this->log($controller,"debug");
+        $this->log($regexp,"debug");
+        return ( $regexp ) ? 1 : null;
     }
 }

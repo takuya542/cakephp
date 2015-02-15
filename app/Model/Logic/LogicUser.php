@@ -5,7 +5,15 @@ class LogicUser extends Model {
     public function create_user( $controller, $facebook_user_data, $img_file_path ) {
 
         $user = $this->_get_user($controller, $facebook_user_data['id']);
+
+        # ToDo1:ユーザ情報に更新がある場合はアップデート
+        # ToDo2:アルバム情報の永続化.ajaxで都度たたいてもいいけど、ある程度キャッシュさせといてもいいはず..
         if ( $user ) {
+            # 最終ログイン日時をアップデート
+            $controller->UserData->updateAll(
+                array( 'updated_at'  => time() ),
+                array( 'facebook_id' => $facebook_user_data['id'] )
+            );
             return $user;
         } else {
             return $controller->UserData->save(array(

@@ -87,12 +87,12 @@ class LogicThread extends Model {
 
     # レスを作成
     # ToDO:rollback調査
-    public function create_response( $controller, $thread_id, $user_id, $comment ) {
+    public function create_response( $controller, $thread_id, $user_id, $comment, $image ) {
         $controller->ThreadComment->save(array(
             'thread_id'  => $thread_id,
             'user_id'    => $user_id,
             'comment'    => $comment,
-            'image'      => null,
+            'image'      => $image,
             'created_at' => time(),
             'updated_at' => time(),
         ));
@@ -119,11 +119,12 @@ class LogicThread extends Model {
             }
             array_push($merged_hash_data, array(
                     'comment'    => $val['ThreadComment']['comment'],
+                    'image'      => $val['ThreadComment']['image'],
                     'created_at' => $val['ThreadComment']['created_at'],
-                    'user_id'    => $user_data["id"],
-                    'name'       => $user_data["name"],
-                    'image'      => $user_data["image"],
-                    'gender'     => $user_data["gender"],
+                    'user_id'         => $user_data["id"],
+                    'user_name'       => $user_data["name"],
+                    'user_image'      => $user_data["image"],
+                    'user_gender'     => $user_data["gender"],
                 )
             );
         }
@@ -137,7 +138,7 @@ class LogicThread extends Model {
             'conditions' => array('thread_id' => $thread_id),
             'limit'      => $limit,
             'offset'     => $offset,
-            'order'      => array('created_at' => 'desc' ),
+            'order'      => array('created_at' => 'asc' ),
         ));
     }
 

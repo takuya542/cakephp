@@ -1,5 +1,7 @@
 <?php
 
+    Router::parseExtensions('json');
+
     #スレ閲覧
     Router::connect('/',                       array('controller' => 'thread', 'action' => 'index'),  array('pass' => array('page')) );
     Router::connect('/index',                  array('controller' => 'thread', 'action' => 'index'),  array('pass' => array('page')) );
@@ -18,6 +20,11 @@
     Router::connect('/login',          array('controller' => 'fbconnect', 'action' => 'login'));
     Router::connect('/login/callback', array('controller' => 'fbconnect', 'action' => 'callback'));
     Router::connect('/logout',         array('controller' => 'fbconnect', 'action' => 'logout'));
+    Router::connect('/login/confirm',  array('controller' => 'thread',    'action' => 'login_confirm'));  #ログイン訴求
+
+    #Ajax
+    Router::connect('/ajax/facebook/albums',             array('controller' => 'ajax', 'action' => 'albums'));
+    Router::connect('/ajax/facebook/pictures/:album_id', array('controller' => 'ajax', 'action' => 'pictures'), array('pass' => array('album_id')));
 
     CakePlugin::routes();
     require CAKE . 'Config' . DS . 'routes.php';

@@ -19,7 +19,6 @@ class ThreadController extends AppController {
 
         $this->set('thread_list',  $multi_threads['thread_list']);
         $this->set('has_next',     $multi_threads["has_next"]);
-
     }
 
     # スレ詳細
@@ -33,6 +32,11 @@ class ThreadController extends AppController {
         $this->set('comments', $single_thread["comments"]);
         $this->set('thread',   $single_thread["thread"]);
         $this->set('has_next', $single_thread["has_next"]);
+        $this->set('page',     $page);
+    }
+
+    public function login_confirm(){
+        $this->render('/Fbconnect/confirm');
     }
 
     protected function _offset( $page, $limit ) {

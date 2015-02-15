@@ -7,10 +7,13 @@ class FbconnectController extends AppController {
     public $uses = array('UserData', 'ThreadData', 'ThreadComment', 'LogicThread', 'LogicUser');
     public $components = array('Cookie', 'Session');
 
+    public function beforeFilter() {
+    }
+
     private function createFacebook() {
         return new Facebook(array(
             'appId'  => '924244504263211',
-            'secret' => '3e8fb618be7e300bddd4394c6d725995',
+            'secret' => 'dfc09a4c57dcc636bd68114bcb7ec84e',
         ));
     }
 
@@ -18,6 +21,7 @@ class FbconnectController extends AppController {
         $facebook  = $this->createFacebook();
         $login_url = $facebook->getLoginUrl(array(
             'redirect_uri' => 'http://dev.keijiban.com/login/callback',
+            'scope'        => 'user_photos',
         ));
         $this->redirect( $login_url );
     }
@@ -27,9 +31,14 @@ class FbconnectController extends AppController {
         $facebook_id = $facebook->getUser();//facebookユーザ情報取得
 
         if($facebook_id){ // 認証後
+            
+            # permission確認
+            #$permissions = $facebook->api("/$facebook_id/permissions");
+            #$this->log($permissions, LOG_DEBUG);
 
             # FB経由でユーザ情報取得
             $me  = $facebook->api('/me', array( 'fields' => 'id,name,gender,birthday' ));
+            $this->log($me, LOG_DEBUG);
             $pic = $facebook->api('/me/picture','GET',array (
                 'type' => 'normal',
                 'redirect' => false,
@@ -37,10 +46,11 @@ class FbconnectController extends AppController {
                 'width' => '200',
             ));
             $img           = file_get_contents( $pic['data']['url']);
-            $img_file_path = 'img/'.$facebook_id.'.jpg';
+            $img_file_path = $facebook_id.'.jpg';
             file_put_contents($img_file_path, $img);
 
             # ユーザ情報の作成
+            # ToDo:アルバム情報の永続化+リフレッシュの仕組み
             $created_user_data = $this->LogicUser->create_user( $this, $me, $img_file_path );
 
             # facebook_idをkeyにしてセッションにユーザ情報を保管
@@ -61,13 +71,20 @@ class FbconnectController extends AppController {
         }
     }
 
+    public function confirm(){
+    }
+
     public function logout(){
-        $facebook   = $this->createFacebook();
+        $facebook    = $this->createFacebook();
+        $facebook_id = $facebook->getUser();//facebookユーザ情報取得
 
         if ( $this->Cookie->check('KJB_D') ) {
 
             #Cookieの破棄
             $this->Cookie->delete('KJB_D');
+
+            # セッションのユーザ情報を破棄
+            $this->Session->delete($facebook_id);
 
             #facebookからのログアウト
             $logout_url = $facebook->getLogoutUrl(array(
