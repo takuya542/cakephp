@@ -53,7 +53,7 @@ class ResponseController extends AppController {
         $this->LogicThread->create_response( $this, $thread_id, $user_id, $comment, $img_file_path );
         */
 
-        # 暫定対応:facebook上の画像をcurlで取得できない。。
+        # 暫定対応 : timelineの画像をcurlで取得できないので調査
         $this->LogicThread->create_response( $this, $thread_id, $user_id, $comment, $picture_source );
 
         #レスしたスレのトップにリダイレクト
