@@ -15,7 +15,7 @@ create table user_data(
     created_at         int               unsigned not null,
     updated_at         int               unsigned not null,  /* ログインのタイミングでアップデート*/
     primary key(id)
-) type=InnoDB;
+);
 
 alter table user_data
  add unique  index(facebook_id);
@@ -29,7 +29,7 @@ create table thread_data (
     created_at         int               unsigned not null,
     updated_at         int               unsigned not null, /* thread_commentsにinsertのタイミングでupdate*/
     primary key(id)
-) type=InnoDB;
+);
 
 alter table thread_data
  add index   i1   (updated_at); /* スレッドフロート式で取得用 */
@@ -44,7 +44,7 @@ create table thread_comments (
     image              text                               ,
     created_at         int               unsigned not null,
     updated_at         int               unsigned not null
-) type=InnoDB;
+);
 
 alter table thread_comments
  add index   i1   (updated_at); /* スレッドフロート式で取得用 */
